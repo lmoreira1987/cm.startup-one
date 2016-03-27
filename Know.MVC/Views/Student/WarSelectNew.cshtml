@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "..:: Know | Student - War Room ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section appScripts
+{
+
+    @*<link href="~/Content/App.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    @Scripts.Render("~/bundles/jquery-signalr")
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Perguntas</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Cadastro de Questões</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="gameInformation"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" id="register">
+                            <input type="text" class="form-control" id="gamaName" placeholder="nome" />
+                            <button type="button" class="btn btn-danger" id="registerName"  title="botão">Comece o jogo</button>
+                        </div>
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-md-12" id="findOpponent">
+                            <strong>Agora olhe para um adversário</strong>
+                            <em>You're just a small way from beating your first opponent!</em><br />
+                            <input type="button" class="btn btn-danger findGame" id="findGame" value="procurando adversário" />
+                        </div>
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-md-12" id="waitingForOpponent">
+                            Estamos à procura de um adversário, por favor aguarde!
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" id="game">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="clear">
+                            <input type="button" class="btn btn-danger findGame" id="findAnotherGame" value="começar de novo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+<div class="clearfix"></div>
+
+@*<script src="/signalr/hubs"></script>
+<script src="~/Scripts/ViewScripts/Student/App.js"></script>*@

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc461117fc104b38ad8b2c03f701a5ac" Name="Diagram1">
+        <EntityTypeShape EntityType="dbKnowModel.Aluno" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Bairro" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Cidade" Width="1.5" PointX="1.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Disciplina" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Endereco" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Escola" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Estado" Width="1.5" PointX="1.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Foto" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Pais" Width="1.5" PointX="1.5" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Professor" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Serie" Width="1.5" PointX="0.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbKnowModel.Sexo" Width="1.5" PointX="0.75" PointY="33.875" IsExpanded="true" />
+        <AssociationConnector Association="dbKnowModel.FK_Aluno_Endereco" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Aluno_Escola" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Aluno_Foto" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Aluno_Serie" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Aluno_Sexo" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Bairro_Cidade" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Endereco_Bairro" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Cidade_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Estado_Pais" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Professor_Foto" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.FK_Professor_Sexo" ManuallyRouted="false" />
+        <AssociationConnector Association="dbKnowModel.ProfessorDisciplina" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

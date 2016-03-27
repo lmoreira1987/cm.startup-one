@@ -1,0 +1,312 @@
+﻿@model Know.MVC.ViewModels.SchoolViewModel
+@{
+    ViewBag.Title = "..:: Know | School - Add Question ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Perguntas</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Cadastro de Questões</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="cad-tab" role="tab" data-toggle="tab" aria-expanded="true">Cadastrar Perguntas</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="pr-tab" data-toggle="tab" aria-expanded="false">Perguntas não Finalizadas</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content3" role="tab" id="visualizar-tab" data-toggle="tab" aria-expanded="false">Visualizar Perguntas Cadastradas</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="cad-tab">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="idioma" class="control-label">Idioma</label>
+                                            <select class="form-control" id="slc-idioma" name="idioma">
+                                                <option value="">Selecione</option>
+                                                @foreach (var item in Model.Idiomas)
+                                                {
+                                                    <option value="@item.Id">@item.Nome</option>
+                                                }
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="disciplina" class="control-label">Disciplina</label>
+                                            <select class="form-control" id="slc-disciplina" name="disciplina">
+                                                <option value="">Selecione</option>
+                                                @foreach (var item in Model.Disciplinas)
+                                                {
+                                                    <option value="@item.Id">@item.Nome</option>
+                                                }
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="serie" class="control-label">Série</label>
+                                            <select class="form-control" id="slc-serie" name="serie">
+                                                <option value="">Selecione</option>
+                                                @foreach (var item in Model.Series)
+                                                {
+                                                    <option value="@item.Id">@item.Nome</option>
+                                                }
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="dificuldade" class="control-label">Dificuldade</label>
+                                            <select class="form-control" id="slc-dificuldade" name="dificuldade">
+                                                <option value="">Selecione</option>
+                                                @foreach (var item in Model.Dificuldades)
+                                                {
+                                                    <option value="@item.Id">@item.Nome</option>
+                                                }
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="pergunta" class="control-label">Pergunta</label>
+                                            <textarea class="form-control" id="txt-pergunta" name="pergunta" required="" title="Digite a pergunta desejada" placeholder="Digite a pergunta desejada"></textarea>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="jumbotron">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="control-label">Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="control-label">Texto da Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="control-label">Explicação da Resposta (Opcional)</label>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <label class="control-label">Correta?</label>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="resposta1" class="control-label">1ª Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-resposta1" name="resposta1" required="" title="Texto da Resposta" placeholder="Texto da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-explicacao1" name="explicacao1" required="" title="Explicação da Resposta" placeholder="Explicação da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <input type="radio" name="correta" id="chk-resposta1" class="flat" checked="checked">
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="resposta2" class="control-label">2ª Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-resposta2" name="resposta2" required="" title="Texto da Resposta" placeholder="Texto da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-explicacao2" name="explicacao2" required="" title="Explicação da Resposta" placeholder="Explicação da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <input type="radio" name="correta" id="chk-resposta2" class="flat">
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="resposta3" class="control-label">3ª Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-resposta3" name="resposta3" required="" title="Texto da Resposta" placeholder="Texto da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-explicacao3" name="explicacao3" required="" title="Explicação da Resposta" placeholder="Explicação da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <input type="radio" name="correta" id="chk-resposta3" class="flat">
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="resposta4" class="control-label">4ª Resposta</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-resposta4" name="resposta4" required="" title="Texto da Resposta" placeholder="Texto da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="1" id="txt-explicacao4" name="explicacao4" required="" title="Explicação da Resposta" placeholder="Explicação da Resposta"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <input type="radio" name="correta" id="chk-resposta4" class="flat">
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="button" id="btn-cancelar" value="Cancelar" class="btn btn-danger" />
+                                            <input type="button" id="btn-cadastrar" value="Cadastrar" class="btn btn-primary" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="button" id="btn-finalizar" value="Finalizar!" class="btn btn-success" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="pr-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tbl-respostas" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th width="100px">Idioma</th>
+                                                    <th width="100px">Disciplina</th>
+                                                    <th>Série</th>
+                                                    <th width="100px">Dificuldade</th>
+                                                    <th>Pergunta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="visualizar-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tbl-respostas" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Grupo</th>
+                                                    <th>Idioma</th>
+                                                    <th>Disciplina</th>
+                                                    <th>Série</th>
+                                                    <th>Dificuldade</th>
+                                                    <th>Pergunta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model.Perguntas)
+                                                {
+                                                    <tr>
+                                                        <td>@item.CodigoGrupo</td>
+                                                        <td>@item.Idioma.Nome</td>
+                                                        <td>@item.Disciplina.Nome</td>
+                                                        <td>@item.Serie.Nome</td>
+                                                        <td>@item.Dificuldade.Nome</td>
+                                                        <td>@item.Nome</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td colspan="5">
+                                                            <table id="tbl-visualizar-respostas" class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Resposta</th>
+                                                                        <th>Explicação</th>
+                                                                        <th width="50px">Correta?</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var resp in item.Respostas)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@resp.Nome</td>
+                                                                            <td>@resp.Explicacao</td>
+                                                                            <td>
+                                                                                @{
+                                                                                    var correta = resp.Correta == true ? "Sim" : "Não";
+                                                                                }
+
+                                                                                @Html.Raw(correta)
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@*<script src="~/Scripts/ViewScripts/Global/Global.js"></script>
+<script src="~/Scripts/jquery-loader.js"></script>*@
+<script src="~/Scripts/ViewScripts/School/AddQuestion.js"></script>
+<script type="text/javascript">
+    LocalAPI.Init();
+</script>

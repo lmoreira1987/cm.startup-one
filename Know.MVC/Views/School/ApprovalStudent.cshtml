@@ -1,0 +1,79 @@
+﻿@model List<Know.MVC.ViewModels.ApprovalStudentViewModel>
+@{
+    ViewBag.Title = "..:: Know | School - Approval Student ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Aprovação</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Aprovação de alunos</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <table class="table table-bordered css-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Série</th>
+                                <th>Data Cadastro</th>
+                                <th colspan="2">Aprovação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count != 0)
+                            { 
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="150">
+                                            @{
+                                                if (item.Foto == null)
+                                                {
+                                                    <img src="/content/template-admin/pictures/profile/profile.jpg" class="img-responsive" width="150" alt="Aluno sem foto" title="Aluno sem foto" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="@item.Foto" class="img-responsive" width="150" alt="@item.Foto" />
+                                                }
+                                            }
+
+                                        </td>
+                                        <td>@item.Nome</td>
+                                        <td>@item.Serie</td>
+                                        <td>@item.DataCriacao</td>
+                                        <td width="25"><img id="img-approve-@item.Id" data-id="@item.Id" src="/content/img/positivo_icon.png" class="img-responsive cursor-pointer img-approve" width="25" alt="Aprovar" title="Aprovar" /></td>
+                                        <td width="25"><img id="img-disapprove-@item.Id" data-id="@item.Id" src="/content/img/negativo_icon.png" class="img-responsive cursor-pointer img-disapprove" width="25" alt="Reprovar" title="Reprovar" /></td>
+                                    </tr>                                
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5" class="text-center">Não contém dados.</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@*<script src="~/Scripts/ViewScripts/Global/Global.js"></script>
+<script src="~/Scripts/jquery-loader.js"></script>*@
+<script src="~/Scripts/ViewScripts/School/ApprovalStudent.js"></script>
+<script type="text/javascript">
+    LocalAPI.Init();
+</script>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "..:: Know | Student - Chat ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chat</h2>
+<div>
+    @Html.TextBox("nome", null, new { placeholder = "Digite seu nome", style = "width:50%;display:block" })
+    @Html.TextBox("mensagem", null, new { placeholder = "Digite seu nome", style = "width:50%;display:block" })
+    <button id="btnEnviar">Enviar</button>
+</div>
+<div style="background:#e1e1e1">
+    <ul id="dialogo"></ul>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+    $(document).ready(function () {
+        var chat = $.connection.chatHub;
+        $.connection.hub.start();
+        $('#btnEnviar').click(function () {
+            chat.server.enviar($('#nome').val(),
+                $('#mensagem').val());
+        });
+        chat.client.enviarMensagem =
+            function (nome, mensagem) {
+                $('#dialogo').append(
+                    '<li><span style=color:red>' +
+                    nome + ': </span>'
+                    + mensagem
+                    + '</li>'
+                    );
+            };
+    });
+
+
+</script>
+

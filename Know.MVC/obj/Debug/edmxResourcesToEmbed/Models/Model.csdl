@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_KnowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Aluno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdSerie" Type="Int64" />
+    <Property Name="Matricula" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DataNascimento" Type="DateTime" Precision="0" />
+    <Property Name="IdSexo" Type="Int64" />
+    <Property Name="IdEscola" Type="Int64" />
+    <Property Name="AprovadoEscola" Type="Boolean" />
+    <Property Name="DataAprovadoEscola" Type="DateTime" Precision="3" />
+    <Property Name="DataAtualizacaoAprovadoEscola" Type="DateTime" Precision="3" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Escola" Relationship="Self.FK_Aluno_Escola" FromRole="Aluno" ToRole="Escola" />
+    <NavigationProperty Name="Serie" Relationship="Self.FK_Aluno_Serie" FromRole="Aluno" ToRole="Serie" />
+    <NavigationProperty Name="Sexo" Relationship="Self.FK_Aluno_Sexo" FromRole="Aluno" ToRole="Sexo" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Aluno_Usuario" FromRole="Aluno" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Bairro">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdCidade" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cidade" Relationship="Self.FK_Bairro_Cidade" FromRole="Bairro" ToRole="Cidade" />
+    <NavigationProperty Name="Enderecoes" Relationship="Self.FK_Endereco_Bairro" FromRole="Bairro" ToRole="Endereco" />
+  </EntityType>
+  <EntityType Name="Cidade">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdEstado" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bairroes" Relationship="Self.FK_Bairro_Cidade" FromRole="Cidade" ToRole="Bairro" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_Cidade_Estado" FromRole="Cidade" ToRole="Estado" />
+  </EntityType>
+  <EntityType Name="Dificuldade">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Dificuldade_Idioma" FromRole="Dificuldade" ToRole="Idioma" />
+    <NavigationProperty Name="Perguntas" Relationship="Self.FK_Pergunta_Dificuldade" FromRole="Dificuldade" ToRole="Pergunta" />
+  </EntityType>
+  <EntityType Name="Disciplina">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Disciplina_Idioma" FromRole="Disciplina" ToRole="Idioma" />
+    <NavigationProperty Name="Perguntas" Relationship="Self.FK_Pergunta_Disciplina" FromRole="Disciplina" ToRole="Pergunta" />
+    <NavigationProperty Name="ProfessorDisciplinas" Relationship="Self.FK_ProfessorDisciplina_Disciplina" FromRole="Disciplina" ToRole="ProfessorDisciplina" />
+  </EntityType>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cep" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Endereco1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdBairro" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bairro" Relationship="Self.FK_Endereco_Bairro" FromRole="Endereco" ToRole="Bairro" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Endereco" FromRole="Endereco" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Escola">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdProfessorAdmin" Type="Int64" />
+    <Property Name="IdPlano" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Alunoes" Relationship="Self.FK_Aluno_Escola" FromRole="Escola" ToRole="Aluno" />
+    <NavigationProperty Name="Plano" Relationship="Self.FK_Escola_Plano" FromRole="Escola" ToRole="Plano" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Escola_Usuario" FromRole="Escola" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPais" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cidades" Relationship="Self.FK_Cidade_Estado" FromRole="Estado" ToRole="Cidade" />
+    <NavigationProperty Name="Pai" Relationship="Self.FK_Estado_Pais" FromRole="Estado" ToRole="Pais" />
+  </EntityType>
+  <EntityType Name="Foto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrlFoto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Foto" FromRole="Foto" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Idioma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Flag" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Dificuldades" Relationship="Self.FK_Dificuldade_Idioma" FromRole="Idioma" ToRole="Dificuldade" />
+    <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplina_Idioma" FromRole="Idioma" ToRole="Disciplina" />
+    <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Idioma" FromRole="Idioma" ToRole="Menu" />
+    <NavigationProperty Name="Perguntas" Relationship="Self.FK_Pergunta_Idioma" FromRole="Idioma" ToRole="Pergunta" />
+    <NavigationProperty Name="Respostas" Relationship="Self.FK_Resposta_Idioma" FromRole="Idioma" ToRole="Resposta" />
+    <NavigationProperty Name="Series" Relationship="Self.FK_Serie_Idioma" FromRole="Idioma" ToRole="Serie" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdMenuPai" Type="Int64" />
+    <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Imagem" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="Ordem" Type="Int64" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Menu_Idioma" FromRole="Menu" ToRole="Idioma" />
+    <NavigationProperty Name="PerfilAcessoes" Relationship="Self.FK_PerfilAcesso_Menu" FromRole="Menu" ToRole="PerfilAcesso" />
+  </EntityType>
+  <EntityType Name="Pai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Estadoes" Relationship="Self.FK_Estado_Pais" FromRole="Pais" ToRole="Estado" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PerfilAcessoes" Relationship="Self.FK_PerfilAcesso_Perfil" FromRole="Perfil" ToRole="PerfilAcesso" />
+    <NavigationProperty Name="UsuarioPerfils" Relationship="Self.FK_UsuarioPerfil_Perfil" FromRole="Perfil" ToRole="UsuarioPerfil" />
+  </EntityType>
+  <EntityType Name="PerfilAcesso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPerfil" Type="Int64" Nullable="false" />
+    <Property Name="IdMenu" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_PerfilAcesso_Menu" FromRole="PerfilAcesso" ToRole="Menu" />
+    <NavigationProperty Name="Perfil" Relationship="Self.FK_PerfilAcesso_Perfil" FromRole="PerfilAcesso" ToRole="Perfil" />
+  </EntityType>
+  <EntityType Name="Pergunta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDisciplina" Type="Int64" Nullable="false" />
+    <Property Name="IdSerie" Type="Int64" Nullable="false" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="IdDificuldade" Type="Int64" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoGrupo" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Dificuldade" Relationship="Self.FK_Pergunta_Dificuldade" FromRole="Pergunta" ToRole="Dificuldade" />
+    <NavigationProperty Name="Disciplina" Relationship="Self.FK_Pergunta_Disciplina" FromRole="Pergunta" ToRole="Disciplina" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Pergunta_Idioma" FromRole="Pergunta" ToRole="Idioma" />
+    <NavigationProperty Name="Serie" Relationship="Self.FK_Pergunta_Serie" FromRole="Pergunta" ToRole="Serie" />
+    <NavigationProperty Name="Respostas" Relationship="Self.FK_Resposta_Pergunta" FromRole="Pergunta" ToRole="Resposta" />
+  </EntityType>
+  <EntityType Name="Plano">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DataDe" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAte" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Escolas" Relationship="Self.FK_Escola_Plano" FromRole="Plano" ToRole="Escola" />
+  </EntityType>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="Admin" Type="Boolean" Nullable="false" />
+    <Property Name="IdSexo" Type="Int64" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Sexo" Relationship="Self.FK_Professor_Sexo" FromRole="Professor" ToRole="Sexo" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Professor_Usuario" FromRole="Professor" ToRole="Usuario" />
+    <NavigationProperty Name="ProfessorDisciplinas" Relationship="Self.FK_ProfessorDisciplina_Professor" FromRole="Professor" ToRole="ProfessorDisciplina" />
+  </EntityType>
+  <EntityType Name="ProfessorDisciplina">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProfessor" Type="Int64" Nullable="false" />
+    <Property Name="IdDisciplina" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Disciplina" Relationship="Self.FK_ProfessorDisciplina_Disciplina" FromRole="ProfessorDisciplina" ToRole="Disciplina" />
+    <NavigationProperty Name="Professor" Relationship="Self.FK_ProfessorDisciplina_Professor" FromRole="ProfessorDisciplina" ToRole="Professor" />
+  </EntityType>
+  <EntityType Name="Resposta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPergunta" Type="Int64" Nullable="false" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correta" Type="Boolean" Nullable="false" />
+    <Property Name="Explicacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Resposta_Idioma" FromRole="Resposta" ToRole="Idioma" />
+    <NavigationProperty Name="Pergunta" Relationship="Self.FK_Resposta_Pergunta" FromRole="Resposta" ToRole="Pergunta" />
+  </EntityType>
+  <EntityType Name="Serie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdIdioma" Type="Int64" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Alunoes" Relationship="Self.FK_Aluno_Serie" FromRole="Serie" ToRole="Aluno" />
+    <NavigationProperty Name="Idioma" Relationship="Self.FK_Serie_Idioma" FromRole="Serie" ToRole="Idioma" />
+    <NavigationProperty Name="Perguntas" Relationship="Self.FK_Pergunta_Serie" FromRole="Serie" ToRole="Pergunta" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Alunoes" Relationship="Self.FK_Aluno_Sexo" FromRole="Sexo" ToRole="Aluno" />
+    <NavigationProperty Name="Professors" Relationship="Self.FK_Professor_Sexo" FromRole="Sexo" ToRole="Professor" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Documento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IdEndereco" Type="Int64" />
+    <Property Name="IdFoto" Type="Int64" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Alunoes" Relationship="Self.FK_Aluno_Usuario" FromRole="Usuario" ToRole="Aluno" />
+    <NavigationProperty Name="Endereco" Relationship="Self.FK_Usuario_Endereco" FromRole="Usuario" ToRole="Endereco" />
+    <NavigationProperty Name="Escolas" Relationship="Self.FK_Escola_Usuario" FromRole="Usuario" ToRole="Escola" />
+    <NavigationProperty Name="Foto" Relationship="Self.FK_Usuario_Foto" FromRole="Usuario" ToRole="Foto" />
+    <NavigationProperty Name="Professors" Relationship="Self.FK_Professor_Usuario" FromRole="Usuario" ToRole="Professor" />
+    <NavigationProperty Name="UsuarioPerfils" Relationship="Self.FK_UsuarioPerfil_Usuario" FromRole="Usuario" ToRole="UsuarioPerfil" />
+  </EntityType>
+  <EntityType Name="UsuarioPerfil">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdPerfil" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Perfil" Relationship="Self.FK_UsuarioPerfil_Perfil" FromRole="UsuarioPerfil" ToRole="Perfil" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuarioPerfil_Usuario" FromRole="UsuarioPerfil" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Aluno_Escola">
+    <End Role="Escola" Type="Self.Escola" Multiplicity="0..1" />
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escola">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="IdEscola" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aluno_Serie">
+    <End Role="Serie" Type="Self.Serie" Multiplicity="0..1" />
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Serie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="IdSerie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aluno_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="0..1" />
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aluno_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aluno">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bairro_Cidade">
+    <End Role="Cidade" Type="Self.Cidade" Multiplicity="1" />
+    <End Role="Bairro" Type="Self.Bairro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cidade">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bairro">
+        <PropertyRef Name="IdCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Endereco_Bairro">
+    <End Role="Bairro" Type="Self.Bairro" Multiplicity="1" />
+    <End Role="Endereco" Type="Self.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bairro">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="IdBairro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cidade_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Cidade" Type="Self.Cidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cidade">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dificuldade_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Dificuldade" Type="Self.Dificuldade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dificuldade">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pergunta_Dificuldade">
+    <End Role="Dificuldade" Type="Self.Dificuldade" Multiplicity="1" />
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dificuldade">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="IdDificuldade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Disciplina_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Disciplina">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pergunta_Disciplina">
+    <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="1" />
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="IdDisciplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorDisciplina_Disciplina">
+    <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="1" />
+    <End Role="ProfessorDisciplina" Type="Self.ProfessorDisciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfessorDisciplina">
+        <PropertyRef Name="IdDisciplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Endereco">
+    <End Role="Endereco" Type="Self.Endereco" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdEndereco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Escola_Plano">
+    <End Role="Plano" Type="Self.Plano" Multiplicity="1" />
+    <End Role="Escola" Type="Self.Escola" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plano">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Escola">
+        <PropertyRef Name="IdPlano" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Escola_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Escola" Type="Self.Escola" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Escola">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Estado_Pais">
+    <End Role="Pais" Type="Self.Pai" Multiplicity="1" />
+    <End Role="Estado" Type="Self.Estado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Estado">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Foto">
+    <End Role="Foto" Type="Self.Foto" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdFoto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pergunta_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resposta_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Resposta" Type="Self.Resposta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resposta">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Serie_Idioma">
+    <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
+    <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idioma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Serie">
+        <PropertyRef Name="IdIdioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerfilAcesso_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="PerfilAcesso" Type="Self.PerfilAcesso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PerfilAcesso">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerfilAcesso_Perfil">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+    <End Role="PerfilAcesso" Type="Self.PerfilAcesso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PerfilAcesso">
+        <PropertyRef Name="IdPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioPerfil_Perfil">
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+    <End Role="UsuarioPerfil" Type="Self.UsuarioPerfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioPerfil">
+        <PropertyRef Name="IdPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pergunta_Serie">
+    <End Role="Serie" Type="Self.Serie" Multiplicity="1" />
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Serie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="IdSerie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resposta_Pergunta">
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="1" />
+    <End Role="Resposta" Type="Self.Resposta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resposta">
+        <PropertyRef Name="IdPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Professor_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="0..1" />
+    <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Professor">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Professor_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Professor">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorDisciplina_Professor">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+    <End Role="ProfessorDisciplina" Type="Self.ProfessorDisciplina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfessorDisciplina">
+        <PropertyRef Name="IdProfessor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioPerfil_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioPerfil" Type="Self.UsuarioPerfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioPerfil">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_KnowEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alunoes" EntityType="Self.Aluno" />
+    <EntitySet Name="Bairroes" EntityType="Self.Bairro" />
+    <EntitySet Name="Cidades" EntityType="Self.Cidade" />
+    <EntitySet Name="Dificuldades" EntityType="Self.Dificuldade" />
+    <EntitySet Name="Disciplinas" EntityType="Self.Disciplina" />
+    <EntitySet Name="Enderecoes" EntityType="Self.Endereco" />
+    <EntitySet Name="Escolas" EntityType="Self.Escola" />
+    <EntitySet Name="Estadoes" EntityType="Self.Estado" />
+    <EntitySet Name="Fotoes" EntityType="Self.Foto" />
+    <EntitySet Name="Idiomas" EntityType="Self.Idioma" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Pais" EntityType="Self.Pai" />
+    <EntitySet Name="Perfils" EntityType="Self.Perfil" />
+    <EntitySet Name="PerfilAcessoes" EntityType="Self.PerfilAcesso" />
+    <EntitySet Name="Perguntas" EntityType="Self.Pergunta" />
+    <EntitySet Name="Planoes" EntityType="Self.Plano" />
+    <EntitySet Name="Professors" EntityType="Self.Professor" />
+    <EntitySet Name="ProfessorDisciplinas" EntityType="Self.ProfessorDisciplina" />
+    <EntitySet Name="Respostas" EntityType="Self.Resposta" />
+    <EntitySet Name="Series" EntityType="Self.Serie" />
+    <EntitySet Name="Sexoes" EntityType="Self.Sexo" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <EntitySet Name="UsuarioPerfils" EntityType="Self.UsuarioPerfil" />
+    <AssociationSet Name="FK_Aluno_Escola" Association="Self.FK_Aluno_Escola">
+      <End Role="Escola" EntitySet="Escolas" />
+      <End Role="Aluno" EntitySet="Alunoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aluno_Serie" Association="Self.FK_Aluno_Serie">
+      <End Role="Serie" EntitySet="Series" />
+      <End Role="Aluno" EntitySet="Alunoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aluno_Sexo" Association="Self.FK_Aluno_Sexo">
+      <End Role="Sexo" EntitySet="Sexoes" />
+      <End Role="Aluno" EntitySet="Alunoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aluno_Usuario" Association="Self.FK_Aluno_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Aluno" EntitySet="Alunoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bairro_Cidade" Association="Self.FK_Bairro_Cidade">
+      <End Role="Cidade" EntitySet="Cidades" />
+      <End Role="Bairro" EntitySet="Bairroes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Endereco_Bairro" Association="Self.FK_Endereco_Bairro">
+      <End Role="Bairro" EntitySet="Bairroes" />
+      <End Role="Endereco" EntitySet="Enderecoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cidade_Estado" Association="Self.FK_Cidade_Estado">
+      <End Role="Estado" EntitySet="Estadoes" />
+      <End Role="Cidade" EntitySet="Cidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dificuldade_Idioma" Association="Self.FK_Dificuldade_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Dificuldade" EntitySet="Dificuldades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pergunta_Dificuldade" Association="Self.FK_Pergunta_Dificuldade">
+      <End Role="Dificuldade" EntitySet="Dificuldades" />
+      <End Role="Pergunta" EntitySet="Perguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Disciplina_Idioma" Association="Self.FK_Disciplina_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Disciplina" EntitySet="Disciplinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pergunta_Disciplina" Association="Self.FK_Pergunta_Disciplina">
+      <End Role="Disciplina" EntitySet="Disciplinas" />
+      <End Role="Pergunta" EntitySet="Perguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorDisciplina_Disciplina" Association="Self.FK_ProfessorDisciplina_Disciplina">
+      <End Role="Disciplina" EntitySet="Disciplinas" />
+      <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Endereco" Association="Self.FK_Usuario_Endereco">
+      <End Role="Endereco" EntitySet="Enderecoes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Escola_Plano" Association="Self.FK_Escola_Plano">
+      <End Role="Plano" EntitySet="Planoes" />
+      <End Role="Escola" EntitySet="Escolas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Escola_Usuario" Association="Self.FK_Escola_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Escola" EntitySet="Escolas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Estado_Pais" Association="Self.FK_Estado_Pais">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Estado" EntitySet="Estadoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Foto" Association="Self.FK_Usuario_Foto">
+      <End Role="Foto" EntitySet="Fotoes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Idioma" Association="Self.FK_Menu_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pergunta_Idioma" Association="Self.FK_Pergunta_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Pergunta" EntitySet="Perguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resposta_Idioma" Association="Self.FK_Resposta_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Resposta" EntitySet="Respostas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Serie_Idioma" Association="Self.FK_Serie_Idioma">
+      <End Role="Idioma" EntitySet="Idiomas" />
+      <End Role="Serie" EntitySet="Series" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerfilAcesso_Menu" Association="Self.FK_PerfilAcesso_Menu">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="PerfilAcesso" EntitySet="PerfilAcessoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerfilAcesso_Perfil" Association="Self.FK_PerfilAcesso_Perfil">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="PerfilAcesso" EntitySet="PerfilAcessoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioPerfil_Perfil" Association="Self.FK_UsuarioPerfil_Perfil">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="UsuarioPerfil" EntitySet="UsuarioPerfils" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pergunta_Serie" Association="Self.FK_Pergunta_Serie">
+      <End Role="Serie" EntitySet="Series" />
+      <End Role="Pergunta" EntitySet="Perguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resposta_Pergunta" Association="Self.FK_Resposta_Pergunta">
+      <End Role="Pergunta" EntitySet="Perguntas" />
+      <End Role="Resposta" EntitySet="Respostas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Professor_Sexo" Association="Self.FK_Professor_Sexo">
+      <End Role="Sexo" EntitySet="Sexoes" />
+      <End Role="Professor" EntitySet="Professors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Professor_Usuario" Association="Self.FK_Professor_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Professor" EntitySet="Professors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorDisciplina_Professor" Association="Self.FK_ProfessorDisciplina_Professor">
+      <End Role="Professor" EntitySet="Professors" />
+      <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioPerfil_Usuario" Association="Self.FK_UsuarioPerfil_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="UsuarioPerfil" EntitySet="UsuarioPerfils" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

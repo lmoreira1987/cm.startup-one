@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DB_KnowEntities-Web.config Connection String" description="DB_KnowEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:ovg8mtdupo.database.windows.net,1433;initial catalog=DB_Know;persist security info=True;user id=ServidorProjetoKnow;password=P@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Usuario\\Desktop\\Know\ Startup\\Know\\Know\.MVC\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DB_KnowEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,39 @@
+﻿<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li><a class="page-scroll" href="#about">Sobre</a></li>
+        <li><a class="page-scroll" href="#howItWorks">Como funciona</a></li>
+        <li><a class="page-scroll" href="#ranking">Ranking</a></li>
+        <li><a class="page-scroll" href="#partners">Parceiros</a></li>
+        <li><a class="page-scroll" href="#contact">Contato</a></li>
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" href="#">
+                Entrar
+            </a>
+            <div class="dropdown-menu " style="right: 0px; width: 350px; border-radius: 10px; background-color: rgba(255,255,255,.8);">
+                <div class="col-xs-12">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email" class="control-label">E-mail</label>
+                            <input type="text" class="form-control" id="txt-email" name="email" value="" required="" title="Digite o seu e-mail" placeholder="example@know.com">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">Senha</label>
+                            <input type="password" class="form-control" id="txt-password" name="password" value="" required="" title="Digite a senha">
+                            <span class="help-block"></span>
+                        </div>
+                        <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                        
+                        <button type="button" id="btn-enviar" class="btn btn-primary btn-block">Entrar</button>
+
+                        <p class="text-center">
+                            <a href="#">Esqueceu seu login?</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>

@@ -1,0 +1,102 @@
+﻿@model List<Know.MVC.Models.Serie>
+@{
+    ViewBag.Title = "..:: Know | Student ::..";
+    Layout = "~/Views/Shared/_LayoutLandingAuxPages.cshtml";
+}
+
+<section class="no-padding" id="studentRegister">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Alunos</h2>
+                <hr class="primary">
+                <p>Você está a um passo de por seus conhecimentos a prova em batalhas épicas de conhecimento.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-12">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-1">
+                                <label>Nome</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txt-name-student" name="name" type="text" placeholder="Digite o Nome" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <label>Serie</label>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="slc-serie-student" class="form-control col-md-4">
+                                    <option value="">Selecione</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.Id">@item.Nome</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-1">
+                                <label>E-mail</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txt-email-student" name="email" type="text" placeholder="Digite o E-mail" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <label>Senha</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txt-password-student" name="password" type="password" placeholder="Digite a Senha" class="form-control" maxlength="50">
+                            </div>
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button id="btn-enviarStudent" type="button" class="btn btn-primary btn-lg">Enviar</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+

@@ -1,0 +1,153 @@
+﻿@model List<Know.MVC.Models.Professor>
+@{
+    ViewBag.Title = "..:: Know | School - Teacher Register ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Professor</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Cadastro de Professor</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="cad-tab" role="tab" data-toggle="tab" aria-expanded="true">Cadastrar Professor</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="visualizar-tab" data-toggle="tab" aria-expanded="false">Visualizar Professores</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="cad-tab">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar">
+                                                <div class="avatar-view" title="Change the avatar">
+                                                    <img src="~/Content/template-admin/images/pictures/profile/profile.jpg" />
+                                                </div>
+                                                <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="name" class="control-label">Nome</label>
+                                                    <input type="text" class="form-control" id="txt-name" name="name" title="Digite o nome do professor" placeholder="Digite o nome do professor" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="email" class="control-label">E-mail</label>
+                                                    <input type="text" class="form-control" id="txt-email" name="email" title="Digite o e-mail do professor" placeholder="Digite o e-mail do professor" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="birthday" class="control-label">Data de Nasc.</label>
+                                                    <input type="text" class="form-control" id="txt-birthday" name="birthday" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="genre" class="control-label">Sexo</label>
+                                                    <select class="form-control" id="slc-genre" name="genre">
+                                                        <option value="">Selecione</option>
+                                                        <option value="1">Masculino</option>
+                                                        <option value="2">Feminino</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="document" class="control-label">CPF</label>
+                                                    <input type="text" class="form-control" id="txt-document" name="document" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="phone" class="control-label">Telefone</label>
+                                                    <input type="text" class="form-control" id="txt-phone" name="phone" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="mobile" class="control-label">Celular</label>
+                                                    <input type="text" class="form-control" id="txt-mobile" name="mobile" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="button" id="btn-cancelar" value="Cancelar" class="btn btn-danger" />
+                                                <input type="button" id="btn-cadastrar" value="Cadastrar" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="visualizar-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tbl-respostas" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>E-mail</th>
+                                                    <th>CPF</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Usuario.Nome</td>
+                                                        <td>@item.Usuario.Email</td>
+                                                        <td>@item.Usuario.Documento</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@*<script src="~/Scripts/ViewScripts/Global/Global.js"></script>
+<script src="~/Scripts/jquery-loader.js"></script>*@
+<script src="~/Scripts/ViewScripts/School/TeacherRegister.js"></script>
+<script type="text/javascript">
+    LocalAPI.Init();
+</script>

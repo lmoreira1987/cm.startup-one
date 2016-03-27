@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Plugin CSS -->
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Content/creativeAux.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Plugin JavaScript -->
+    <script src="/scripts/jquery.easing.min.js"></script>
+    <script src="/scripts/jquery.fittext.js"></script>
+    <script src="/scripts/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    
+    <script src="~/Scripts/ViewScripts/Global/Global.js"></script>
+    <script src="~/Scripts/jquery-loader.js"></script>
+    
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body id="page-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll wow zoomIn animated" data-wow-duration="700ms" data-wow-delay="300ms" href="/home/index#page-top">
+                    <img src="~/Content/img/logo40_34.png" />
+                </a>
+                <a class="navbar-brand page-scroll homeKnowSize wow zoomIn animated" data-wow-duration="700ms" data-wow-delay="300ms" href="/home/index#page-top">
+                    KNOW
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="/home/index#about">Sobre</a></li>
+                    <li><a class="page-scroll" href="/home/index#howItWorks">Como funciona</a></li>
+                    <li><a class="page-scroll" href="/home/index#ranking">Ranking</a></li>
+                    <li><a class="page-scroll" href="/home/index#partners">Parceiros</a></li>
+                    <li><a class="page-scroll" href="/home/index#contact">Contato</a></li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" href="#">
+                            Entrar
+                        </a>
+                        <div class="dropdown-menu " style="right: 0px; width: 350px; border-radius: 10px; background-color: rgba(255,255,255,.8);">
+                            <div class="col-xs-12">
+                                <form id="loginForm">
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">E-mail</label>
+                                        <input type="text" class="form-control" id="txt-email" name="email" value="" required="" title="Digite o seu e-mail" placeholder="example@know.com">
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="control-label">Senha</label>
+                                        <input type="password" class="form-control" id="txt-password" name="password" value="" required="" title="Digite a senha">
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+
+                                    <button type="button" id="btn-enviar" class="btn btn-primary btn-block">Entrar</button>
+
+                                    <p class="text-center">
+                                        <a href="#">Esqueceu seu login?</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    @RenderBody()
+
+    <footer class="bg-dark homeFooter navbar-fixed-bottom" style="background-color: #f05f40;">
+        <div class="container text-center wow zoomIn animated" data-wow-duration="700ms" data-wow-delay="300ms">
+            <div class="call-to-action">
+                &copy;@DateTime.Now.Year Know. Coded by <a href="http://codemoreira.azurewebsites.net/" target="_blank" style="color:#fff; text-decoration:none;">codemoreira</a>
+            </div>
+        </div>
+    </footer> 
+
+    
+    @RenderSection("scripts", required: false)
+
+    <script src="/scripts/creative.js"></script>
+    <script src="~/Scripts/ViewScripts/Login/Login.js"></script>
+    <script type="text/javascript">
+        LocalAPI.Init();
+    </script>
+</body>
+</html>

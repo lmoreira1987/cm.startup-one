@@ -1,0 +1,208 @@
+﻿@model Know.MVC.ViewModels.WarSelectViewModel
+@{
+    ViewBag.Title = "..:: Know | Student - War ::..";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section appScripts
+{
+    <link href="~/Content/App.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/ViewScripts/Student/App.js"></script>
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Batalhar</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Escolha de Adversário</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            As informações abaixo definem em que categoria você irá batalhar
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="disciplina" class="control-label">Disciplina</label>
+                                <select class="form-control" id="slc-disciplina" name="disciplina">
+                                    <option value="">Selecione</option>
+                                    @foreach (var item in Model.Disciplinas)
+                                    {
+                                        <option value="@item.Id">@item.Nome</option>
+                                    }
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="serie" class="control-label">Série</label>
+                                <select class="form-control" id="slc-serie" name="serie">
+                                    <option value="">Selecione</option>
+                                    @foreach (var item in Model.Series)
+                                    {
+                                        <option value="@item.Id">@item.Nome</option>
+                                    }
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            Foram encontrados @Model.UsuarioBatalha.Count estudantes dispostos a batalhar.
+                        </div>
+                    </div>
+
+                    @if (Model.UsuarioBatalha.Count > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                Desafie um deles e boa batalha.
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+
+                                <div class="x_content">
+
+                                    @if (Model.UsuarioBatalha.Count == 0)
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                                No momento não existem adversários para batalhar com você.
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @foreach (var item in Model.UsuarioBatalha)
+                                    {
+                                        <a href="/Student/WarRoomStage?id=@item.Id" target="_self">
+                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                <div class="x_panel">
+
+                                                    <div class="x_content">
+
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                                <img src="~/Content/template-admin/images/pictures/profile/profile.jpg" class="img-responsive" height="100" />
+                                                            </div>
+                                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        <b>@item.Nome</b>
+                                                                    </div>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        Russia
+                                                                    </div>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        Moscow Scavurzka Skol
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input type="button" id="btn-new-war" value="Nova Batalha" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+
+                                <div class="x_content">
+
+                                    @*<div class="content">*@
+                                        <span id="gameInformation"></span>
+                                        @*<div>*@
+                                        <div class="row" id="register">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" id="gamaName" placeholder="nome" />
+                                                <button type="button" class="btn btn-primary btn-lg" id="registerName">Comece o jogo</button>
+                                            </div>
+                                        </div>
+                                        <div id="findOpponent">
+                                            <strong>Agora olhe para um adversário</strong>
+                                            <em>You're just a small way from beating your first opponent!</em><br />
+                                            <input type="button" class="button findGame" id="findGame" value="procurando adversário" />
+                                        </div>
+                                        <div id="waitingForOpponent">Estamos à procura de um adversário, por favor aguarde!</div>
+                                        <div id="game"></div>
+                                        <div class="clear">
+                                            <input type="button" class="button findGame" id="findAnotherGame" value="começar de novo" />
+                                        </div>
+                                        @*</div>*@
+                                    @*</div>*@
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@*<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>*@
+@*<script src="~/signalr/hubs"></script>*@
+<script src="~/Scripts/ViewScripts/Student/WarSelect.js"></script>
+@*<script src="~/Scripts/ViewScripts/Student/App.js"></script>*@
+<script type="text/javascript">
+        LocalAPI.Init();
+    </script>
+
